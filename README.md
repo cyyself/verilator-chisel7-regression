@@ -211,6 +211,6 @@ And the assembly code is very simple now:
  500:	c3                   	ret
 ```
 
-The code size is only `0x16` bytes, 5 instructions only. Much much better than Chisel 7 and Chisel 6 generated code.
+The code size is only `0x16` bytes, **5 instructions only**. Much much better than Chisel 7 (**12k** instructions) and Chisel 6 (**1.4k** instructions). We can see that the optimal code for Mux1H with large number of inputs should be a simple array lookup.
 
 There should be a **very large** room for Verilator and CIRCT FIRRTL backend to improve the generated code for such patterns to achieve optimal performance.
