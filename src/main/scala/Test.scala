@@ -3,7 +3,7 @@ import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
 class Test extends RawModule {
-  val width = 9 // 2**9 = 512 entries
+  val width = 7 // 2**7 = 128 entries
   val io = IO(new Bundle {
     val in = Input(Vec((1 << width), UInt(32.W)))
     val sel = Input(UInt(width.W))
