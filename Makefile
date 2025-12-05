@@ -1,9 +1,11 @@
+MILL := ./mill
+
 all: analyze/chisel6.s analyze/chisel7.s
 
-rtl/chisel6/Test.sv: src/main/scala/Test.scala
+rtl/chisel6/Test.sv: src/main/scala/Test.scala $(MILL)
 	mill -i Test6.run rtl/chisel6
 
-rtl/chisel7/Test.sv: src/main/scala/Test.scala
+rtl/chisel7/Test.sv: src/main/scala/Test.scala $(MILL)
 	mill -i Test7.run rtl/chisel7
 
 verilated/chisel6/libVTest.a: rtl/chisel6/Test.sv
@@ -21,6 +23,9 @@ analyze/chisel6.s: verilated/chisel6/libVTest.a
 analyze/chisel7.s: verilated/chisel7/libVTest.a
 	mkdir -p analyze
 	objdump --disassemble=_Z37VTest___024root___ico_sequent__TOP__0P15VTest___024root -S $< > $@
+
+./mill:
+	wget https://repo1.maven.org/maven2/com/lihaoyi/mill-dist/1.0.4/mill-dist-1.0.4-mill.sh -O $@
 
 .PHONY: bsp clean
 
