@@ -8,19 +8,19 @@ rtl/chisel7/Test.sv: src/main/scala/Test.scala
 
 verilated/chisel6/libVTest.a: rtl/chisel6/Test.sv
 	mkdir -p verilated/chisel6
-	verilator --build -O3 --cc rtl/chisel6/Test.sv --Mdir verilated/chisel6 --CFLAGS "-O3"
+	verilator --build -O3 --cc rtl/chisel6/Test.sv --Mdir verilated/chisel6 --CFLAGS "-O3 -g"
 
 verilated/chisel7/libVTest.a: rtl/chisel7/Test.sv
 	mkdir -p verilated/chisel7
-	verilator --build -O3 --cc rtl/chisel7/Test.sv --Mdir verilated/chisel7 --CFLAGS "-O3"
+	verilator --build -O3 --cc rtl/chisel7/Test.sv --Mdir verilated/chisel7 --CFLAGS "-O3 -g"
 
 analyze/chisel6.s: verilated/chisel6/libVTest.a
 	mkdir -p analyze
-	objdump --disassemble=_Z37VTest___024root___ico_sequent__TOP__0P15VTest___024root $< > $@
+	objdump --disassemble=_Z37VTest___024root___ico_sequent__TOP__0P15VTest___024root -S $< > $@
 
 analyze/chisel7.s: verilated/chisel7/libVTest.a
 	mkdir -p analyze
-	objdump --disassemble=_Z37VTest___024root___ico_sequent__TOP__0P15VTest___024root $< > $@
+	objdump --disassemble=_Z37VTest___024root___ico_sequent__TOP__0P15VTest___024root -S $< > $@
 
 .PHONY: bsp clean
 
