@@ -1,5 +1,7 @@
 # Verilator Chisel 7 Regression Test
 
+Update: This has been resolved in [Verilator PR #6822](https://github.com/verilator/verilator/pull/6822).
+
 ## Want to see the issue by self-compilation?
 
 ```bash
